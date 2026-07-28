@@ -256,4 +256,28 @@ export const SamuraiFigure = forwardRef<
 
           {/* headphones — dj mood */}
           <group ref={phones} position={[0, 0.06, 0]} visible={headphones}>
+            {/* headband arching over the crown */}
             <mesh position={[0, 0.13, 0]} rotation={[Math.PI / 2, 0, 0]}>
+              <torusGeometry args={[0.2, 0.018, 8, 28, Math.PI]} />
+              <meshStandardMaterial color="#1c1830" roughness={0.5} metalness={0.4} />
+            </mesh>
+            {/* earcups */}
+            {[-0.19, 0.19].map((x) => (
+              <mesh key={x} position={[x, 0.02, 0]} rotation={[0, 0, Math.PI / 2]}>
+                <cylinderGeometry args={[0.085, 0.085, 0.07, 18]} />
+                <meshStandardMaterial color="#15121f" roughness={0.55} metalness={0.35} />
+              </mesh>
+            ))}
+            {/* glowing accent rings on the cups */}
+            {[-0.19, 0.19].map((x) => (
+              <mesh key={`r-${x}`} position={[x, 0.02, 0.035]}>
+                <ringGeometry args={[0.04, 0.055, 18]} />
+                <meshBasicMaterial color={OBI} toneMapped={false} />
+              </mesh>
+            ))}
+          </group>
+        </group>
+      </group>
+    </group>
+  );
+});

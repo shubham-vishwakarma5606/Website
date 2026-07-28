@@ -8,15 +8,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github, Linkedin, Mail } from "lucide-react";
-import { site, navLinks } from "@/lib/content";
 import { Github, Linkedin, Mail, type LucideIcon } from "lucide-react";
-
-const socialIcons: Record<string, React.ElementType> = {
-  GitHub: Github,
-  LinkedIn: Linkedin,
-  Email: Mail,
-};
+import { site, navLinks } from "@/lib/content";
 
 const socialIcons: Record<string, LucideIcon> = {
   GitHub: Github,
@@ -100,8 +93,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   target={external ? "_blank" : undefined}
-rel={external ? "noreferrer" : undefined}
-                    : {})}
+                  rel={external ? "noreferrer" : undefined}
                   aria-label={social.label}
                   className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-foreground-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:text-foreground hover:shadow-[0_0_24px_rgba(94,106,210,0.25)]"
                 >

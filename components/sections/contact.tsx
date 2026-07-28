@@ -6,7 +6,6 @@
  * and an accent beacon CTA (email) plus a quiet phone option.
  */
 import { motion, useReducedMotion } from "framer-motion";
-import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/content";
 import { Reveal } from "@/components/ui/reveal";
 import { Mail, Phone, FileDown, ArrowUpRight } from "lucide-react";
@@ -69,15 +68,16 @@ export function Contact() {
               href={site.phoneHref}
               className="inline-flex items-center gap-2.5 rounded-lg bg-white/[0.05] px-6 py-4 text-sm font-medium text-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-200 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(255,255,255,0.06),inset_0_1px_0_0_rgba(255,255,255,0.12)] active:scale-[0.98]"
             >
-              <Phone <a
-  href={withBase(site.resume)}
-  download="Shubham-Vishwakarma-Resume.pdf"
-  className="inline-flex items-center gap-2.5 rounded-lg border border-accent/30 bg-accent/[0.08] px-6 py-4 text-sm font-medium text-accent-bright shadow-[0_0_24px_rgba(94,106,210,0.12)] transition-all duration-200 hover:border-accent/50 hover:bg-accent/[0.14] hover:shadow-[0_0_36px_rgba(94,106,210,0.22)] active:scale-[0.98]"
->
-  <FileDown className="h-4 w-4" />
-  Résumé · PDF
-</a> className="h-4 w-4 text-foreground-muted" />
+              <Phone className="h-4 w-4 text-foreground-muted" />
               {site.phone}
+            </a>
+            <a
+              href={withBase(site.resume)}
+              download="Shubham-Vishwakarma-Resume.pdf"
+              className="inline-flex items-center gap-2.5 rounded-lg border border-accent/30 bg-accent/[0.08] px-6 py-4 text-sm font-medium text-accent-bright shadow-[0_0_24px_rgba(94,106,210,0.12)] transition-all duration-200 hover:border-accent/50 hover:bg-accent/[0.14] hover:shadow-[0_0_36px_rgba(94,106,210,0.22)] active:scale-[0.98]"
+            >
+              <FileDown className="h-4 w-4" />
+              Résumé · PDF
             </a>
           </div>
         </Reveal>

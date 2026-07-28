@@ -11,18 +11,13 @@ const nextConfig: NextConfig = {
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   images: { unoptimized: true },
-};
-
-export default nextConfig;
-
-const basePath = process.env.PAGES_BASE_PATH ?? "";
-
-const nextConfig: NextConfig = {
-  output: "export",
-  basePath,
-  assetPrefix: basePath ? `${basePath}/` : undefined,
+  // Expose basePath to the client bundle so /public asset URLs (e.g. the
+  // samurai figure's textures, the résumé) resolve under a repo subpath
+  // like /Website. NEXT_PUBLIC_* are inlined at build time, identical
+  // server- and client-side.
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
-  images: { unoptimized: true },
 };
+
+export default nextConfig;
