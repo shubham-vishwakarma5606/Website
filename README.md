@@ -29,15 +29,23 @@ npm run build    # static site exported to ./out
 Deploy `out/` to any static host (Netlify, Vercel, GitHub Pages, S3…).
 No server, no external font requests, no runtime dependencies.
 
-## Deploy to GitHub Pages (CI included)
+## Deploy to GitHub Pages (CI ready)
 
-`.github/workflows/deploy.yml` builds and publishes on every push to `main`:
+A ready-made workflow ships at the repo root as **`deploy-github-pages.yml`**.
+To activate it:
 
-1. Repo **Settings → Pages → Source → "GitHub Actions"** (one-time).
-2. Push to `main` — the workflow sets `PAGES_BASE_PATH=/<repo>` automatically
-   and publishes to `https://<username>.github.io/<repo>/`.
-3. On any other host (or a custom domain), `PAGES_BASE_PATH` is empty and the
-   site builds for the root path.
+1. Move it into place (workflow files must live under `.github/workflows/`):
+   ```bash
+   mkdir -p .github/workflows
+   git mv deploy-github-pages.yml .github/workflows/deploy.yml
+   git commit -m "Enable Pages deploy workflow" && git push
+   ```
+   (Commit this from your own machine/account — it needs the `workflows` scope.)
+2. Repo **Settings → Pages → Source → "GitHub Actions"** (one-time).
+3. Every push to `main` then publishes to
+   `https://shubham-vishwakarma5606.github.io/Website/` — the workflow sets
+   `PAGES_BASE_PATH=/Website` automatically. On Netlify/Vercel/custom domains
+   the base path stays empty and the site builds for root.
 
 ## Where things live
 
