@@ -14,3 +14,15 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
+const nextConfig: NextConfig = {
+  output: "export",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
+  images: { unoptimized: true },
+};

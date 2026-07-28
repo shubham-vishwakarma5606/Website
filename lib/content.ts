@@ -33,6 +33,7 @@ export const site = {
     },
     { label: "Email", href: "mailto:shubham.vishwakarma5606@gmail.com" },
   ],
+    resume: "/Shubham-Vishwakarma-Resume.pdf",
 };
 
 export const navLinks = [

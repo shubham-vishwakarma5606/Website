@@ -1,12 +1,17 @@
 "use client";
 
 /**
- * SiteShell — owns the boot sequence lifecycle.
+ * SiteShell — owns the site's entry lifecycle:
  *
- * While booting, an overlay terminal plays over a locked viewport.
- * Once it completes (or is skipped / reduced-motion is set), `booted`
- * flips to true via context so entrance animations across the site
- * can start after the reveal rather than under it.
+ *   BOOT (secure-terminal) → CINEMATIC (samurai perimeter check)
+ *   → CONTENT (hero + sections animate in)
+ *
+ * - Scroll stays locked until the reveal chain completes.
+ * - `useBooted()` gates the navbar; `useReady()` gates hero content
+ *   (boot AND intro both done).
+ * - prefers-reduced-motion skips the cinematic entirely.
+ * - The 3D cinematic is loaded on demand (code-split, ssr:false) so
+ *   three.js never lands in the critical bundle.
  */
 import {
   createContext,
@@ -15,36 +20,64 @@ import {
   useEffect,
   useState,
 } from "react";
-import { AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+import { AnimatePresence, useReducedMotion } from "framer-motion";
 import { BootSequence } from "@/components/boot-sequence";
 
-// Default `true`: pages that don't run a boot sequence (e.g. /blog)
-// render as if already past the reveal gate.
+const SamuraiIntro = dynamic(() => import("@/components/samurai/samurai-intro"), {
+  ssr: false,
+});
+
+// Default `true`: pages without the shell (e.g. /blog) act as revealed.
 const BootContext = createContext(true);
+const ReadyContext = createContext(true);
 
 /** True once the boot animation has finished and the site is revealed. */
 export function useBooted() {
   return useContext(BootContext);
 }
 
+/** True once boot AND the samurai cinematic have both completed. */
+export function useReady() {
+  return useContext(ReadyContext);
+}
+
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const [booted, setBooted] = useState(false);
-  const complete = useCallback(() => setBooted(true), []);
+  const [introDone, setIntroDone] = useState(false);
+  const reducedMotion = useReducedMotion();
 
-  // Lock scroll while the boot overlay is up
+  const completeBoot = useCallback(() => setBooted(true), []);
+  const completeIntro = useCallback(() => setIntroDone(true), []);
+
+  // Reduced motion: no cinematic at all
   useEffect(() => {
-    document.body.style.overflow = booted ? "" : "hidden";
+    if (booted && reducedMotion) setIntroDone(true);
+  }, [booted, reducedMotion]);
+
+  const ready = booted && introDone;
+
+  // Lock scroll through the whole reveal chain
+  useEffect(() => {
+    document.body.style.overflow = ready ? "" : "hidden";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [booted]);
+  }, [ready]);
 
   return (
     <BootContext.Provider value={booted}>
-      <AnimatePresence>
-        {!booted && <BootSequence key="boot" onComplete={complete} />}
-      </AnimatePresence>
-      {children}
+      <ReadyContext.Provider value={ready}>
+        <AnimatePresence>
+          {!booted && <BootSequence key="boot" onComplete={completeBoot} />}
+        </AnimatePresence>
+        <AnimatePresence>
+          {booted && !introDone && !reducedMotion && (
+            <SamuraiIntro key="intro" onComplete={completeIntro} />
+          )}
+        </AnimatePresence>
+        {children}
+      </ReadyContext.Provider>
     </BootContext.Provider>
   );
 }
