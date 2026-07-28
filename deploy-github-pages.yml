@@ -3,6 +3,9 @@
 # One-time repo setup: Settings → Pages → Source → "GitHub Actions".
 # Every push to main then publishes to
 # https://<username>.github.io/<repo>/ automatically.
+#
+# Without this workflow GitHub falls back to its legacy Jekyll builder,
+# which ignores ./out entirely and renders README.md as the home page.
 name: Deploy to GitHub Pages
 
 on:
@@ -37,6 +40,10 @@ jobs:
         run: npm run build
         env:
           PAGES_BASE_PATH: "/${{ github.event.repository.name }}"
+
+      # Belt and braces: stop any Jekyll processing from eating /_next/*.
+      - name: Disable Jekyll
+        run: touch ./out/.nojekyll
 
       - uses: actions/configure-pages@v5
 

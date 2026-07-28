@@ -29,23 +29,53 @@ npm run build    # static site exported to ./out
 Deploy `out/` to any static host (Netlify, Vercel, GitHub Pages, S3…).
 No server, no external font requests, no runtime dependencies.
 
-## Deploy to GitHub Pages (CI ready)
+## Deploy to GitHub Pages
 
-A ready-made workflow ships at the repo root as **`deploy-github-pages.yml`**.
-To activate it:
+> **⚠️ The live site currently shows this README, not the portfolio.**
+> Two things below are still switched off. Both need *your* account — an
+> automation bot cannot do either one.
 
-1. Move it into place (workflow files must live under `.github/workflows/`):
-   ```bash
-   mkdir -p .github/workflows
-   git mv deploy-github-pages.yml .github/workflows/deploy.yml
-   git commit -m "Enable Pages deploy workflow" && git push
-   ```
-   (Commit this from your own machine/account — it needs the `workflows` scope.)
-2. Repo **Settings → Pages → Source → "GitHub Actions"** (one-time).
-3. Every push to `main` then publishes to
-   `https://shubham-vishwakarma5606.github.io/Website/` — the workflow sets
-   `PAGES_BASE_PATH=/Website` automatically. On Netlify/Vercel/custom domains
-   the base path stays empty and the site builds for root.
+**Why it breaks:** Pages is set to its legacy *"Deploy from a branch"* mode, so
+GitHub runs its built-in **Jekyll** builder. Jekyll knows nothing about
+`out/`, so it just renders `README.md` as the home page. The fix is to hand
+deployment to Actions instead.
+
+### Step 1 — activate the workflow (one command)
+
+The workflow is written and verified, but parked at the repo root as
+`deploy-github-pages.yml`. GitHub refuses to let a bot create or edit anything
+under `.github/workflows/` without the `workflows` OAuth scope, so it has to be
+moved from your own machine:
+
+```bash
+./activate-pages.sh          # moves the file, commits, pushes
+```
+
+<details>
+<summary>…or do it by hand</summary>
+
+```bash
+mkdir -p .github/workflows
+git mv deploy-github-pages.yml .github/workflows/deploy.yml
+git commit -m "Enable Pages deploy workflow"
+git push
+```
+
+</details>
+
+### Step 2 — point Pages at Actions
+
+**Settings → Pages → Source → "GitHub Actions"**. One time only. Skipping this
+leaves Jekyll in charge and the README keeps winning.
+
+### After that
+
+Every push to `main` builds and publishes to
+`https://shubham-vishwakarma5606.github.io/Website/`. The workflow sets
+`PAGES_BASE_PATH=/Website` so assets resolve under the repo subpath, and drops
+a `.nojekyll` file so Jekyll never strips the `_next/*` bundles. On
+Netlify/Vercel/custom domains the base path stays empty and the site builds for
+root.
 
 ## Where things live
 
