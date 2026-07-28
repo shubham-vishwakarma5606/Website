@@ -10,24 +10,35 @@
 export const site = {
   name: "Shubham Vishwakarma",
   monogram: "SV",
-  role: "Cybersecurity Consultant · Solution Architect",
+  role: "Solution Architect · Cybersecurity & Infrastructure Specialist",
+  roleFull:
+    "Solution Architect | Presales Engineer | Cybersecurity & Infrastructure Specialist",
   tagline: "Trust, engineered.",
-  email: "hello@shubhamvishwakarma.com",
+  email: "shubham.vishwakarma5606@gmail.com",
+  phone: "+91 70397 56742",
+  phoneHref: "tel:+917039756742",
   location: "Mumbai, India",
   timezone: "IST",
-  url: "https://shubhamvishwakarma.com",
+  url: "https://cyberseanshubham.netlify.app",
   description:
-    "Personal site of Shubham Vishwakarma — cybersecurity consultant and solution architect designing zero-trust systems, securing AI pipelines, and helping teams ship fast without breaking trust.",
+    "Solution architect and cybersecurity specialist in Mumbai. 5+ years securing BFSI-scale infrastructure — 80,000+ endpoints, 5,000+ servers, 99% uptime — now designing zero-trust architectures and AI-assisted operations.",
   socials: [
-    { label: "GitHub", href: "https://github.com/shubham-vishwakarma5606" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/shubham-vishwakarma" },
-    { label: "X / Twitter", href: "https://x.com/shubhamvsec" },
+    {
+      label: "GitHub",
+      href: "https://github.com/shubham-vishwakarma5606",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/shubham-vishwakarma5606",
+    },
+    { label: "Email", href: "mailto:shubham.vishwakarma5606@gmail.com" },
   ],
 };
 
 export const navLinks = [
   { label: "Journey", href: "#journey" },
   { label: "Expertise", href: "#expertise" },
+  { label: "Projects", href: "#projects" },
   { label: "Interests", href: "#interests" },
   { label: "Insights", href: "#insights" },
   { label: "Blog", href: "#blog" },
@@ -38,23 +49,23 @@ export const navLinks = [
 /* ------------------------------------------------------------------ */
 
 export const hero = {
-  status: "Available for consulting engagements",
+  status: "Open to consulting & solutioning engagements",
   headlineA: "Architecting security",
   headlineB: "for an AI-driven world.",
-  lead: "I'm Shubham Vishwakarma — a cybersecurity consultant and solution architect. I design zero-trust systems, secure AI and data pipelines, and help engineering teams move fast without breaking trust.",
+  lead: "I'm Shubham Vishwakarma — a solution architect and cybersecurity specialist from Mumbai. I keep BFSI-scale environments secure and running: 80,000+ endpoints, 5,000+ servers, 99% uptime. Now I design the zero-trust architectures and AI-assisted operations that make that look easy.",
   primaryCta: { label: "Explore my journey", href: "#journey" },
   secondaryCta: { label: "Get in touch", href: "#contact" },
   terminalLines: [
-    { prompt: "whoami", output: "shubham.vishwakarma :: security_architect" },
+    { prompt: "whoami", output: "shubham.vishwakarma :: solution_architect" },
     {
       prompt: "cat ./focus.txt",
-      output: "zero-trust architecture · AI & data security · cloud hardening",
+      output: "zero-trust · BFSI security ops · AI-assisted reliability",
     },
     {
       prompt: "uptime --career",
-      output: "9+ years · 60+ engagements · 0 shortcuts",
+      output: "5+ years · 80K endpoints · 99% availability",
     },
-    { prompt: "sudo give –access guest", output: "granted. welcome, reader. ▊" },
+    { prompt: "sudo give --access guest", output: "granted. welcome, reader. ▊" },
   ],
 };
 
@@ -66,6 +77,7 @@ export interface JourneyEntry {
   period: string;
   role: string;
   org: string;
+  clients?: string[];
   summary: string;
   tags: string[];
   current?: boolean;
@@ -73,44 +85,35 @@ export interface JourneyEntry {
 
 export const journey: JourneyEntry[] = [
   {
-    period: "2017 — 2019",
-    role: "Security Operations Analyst",
-    org: "CyberEdge Technologies",
-    summary:
-      "Started in the SOC trenches — triaging alerts, tuning SIEM rules, and writing my first incident-response playbooks. Learned the foundational truth of security: you can't protect what you can't see.",
-    tags: ["SIEM", "Incident Response", "Threat Intel"],
-  },
-  {
     period: "2019 — 2021",
-    role: "Security Engineer",
-    org: "CloudSentinel Labs",
+    role: "Foundations — B.Sc. Information Technology",
+    org: "Dhanukar College of Commerce and Science",
     summary:
-      "Moved into cloud security as the company migrated to AWS and Azure. Hardened landing zones, rebuilt IAM from scratch, and automated CIS benchmark compliance across 200+ workloads.",
-    tags: ["AWS", "Azure", "IAM", "Automation"],
+      "Built the base layer: networking, Linux, and databases by day; Kali boxes and home labs by night. Started breaking systems long before anyone paid me to defend them — and learned that curiosity is the first control.",
+    tags: ["B.Sc. IT", "Linux", "Networking", "Home Labs"],
   },
   {
-    period: "2021 — 2023",
-    role: "Senior Security Consultant",
-    org: "Apex Advisory Group",
+    period: "2021 — 2024",
+    role: "IT Security Engineer",
+    org: "Hitachi Systems India — deputed to major BFSI clients",
+    clients: [
+      "IndusInd Bank",
+      "SBM Bank",
+      "Mahindra & Mahindra",
+      "Axis Mutual Fund",
+      "JM Financial",
+    ],
     summary:
-      "Led security assessments and compliance programs for banking, healthcare and SaaS clients. Learned to translate deep technical risk into narratives boards actually act on.",
-    tags: ["ISO 27001", "SOC 2", "Risk", "GRC"],
+      "Three years inside India's most regulated infrastructure. Secured 80,000+ endpoints and 5,000+ servers running 24×7 at 99% uptime. Deployed Trellix EDR, DLP and Application Control on-prem; ran SentinelOne EDR/XDR across cloud and on-prem; supported treasury and trading platforms (Bloomberg, Refinitiv, CCIL); automated patching for the enterprise with ManageEngine 360; and led malware investigations, threat hunts and on-call incident response beside SOC and NOC teams.",
+    tags: ["EDR/XDR", "PAM", "DLP", "Incident Response", "BFSI", "Automation"],
   },
   {
-    period: "2023 — 2025",
-    role: "Security Solution Architect",
-    org: "Meridian Stack",
+    period: "2024 — Present",
+    role: "Cybersecurity Solutions Architect · Presales",
+    org: "BD Software Distribution",
     summary:
-      "Owned security-by-design for enterprise platforms — zero-trust transformations, micro-segmentation, policy-as-code, and DevSecOps enablement for teams shipping daily.",
-    tags: ["Zero Trust", "DevSecOps", "Architecture"],
-  },
-  {
-    period: "2025 — Present",
-    role: "Independent Consultant & Architect",
-    org: "Self-employed",
-    summary:
-      "Fractional security architecture for startups and enterprises, with a research focus on AI and LLM security — because the next attack surface is the one we're building right now.",
-    tags: ["Consulting", "AI Security", "Research"],
+      "Now on the architecture side of the table: technical assessments and solution design for BFSI and government clients, presales with customers and partners, and L1/L2 escalation support for enterprise security platforms. Designing one-click ZTNA remote access, validating AI-generated detections before they touch production, and automating deployment health checks in Python and Bash.",
+    tags: ["Presales", "Solution Architecture", "ZTNA", "PAM/IAM", "AI-Assisted Ops"],
     current: true,
   },
 ];
@@ -129,59 +132,144 @@ export interface ExpertiseCard {
 }
 
 export const expertiseIntro =
-  "Security isn't a single skill — it's a system of disciplines that have to work together under pressure. Here's where I spend my time.";
+  "Five years across SOC floors, bank-grade infrastructure, and presales war rooms. My toolkit was built where security meets uptime.";
 
 export const expertise: ExpertiseCard[] = [
   {
-    title: "Security Architecture & Zero Trust",
+    title: "Security Operations & Incident Response",
     description:
-      "Reference architectures that assume breach and contain it anyway. Identity-first perimeters, micro-segmentation, and policy-as-code that developers can actually live with.",
-    tags: ["Zero Trust", "Identity", "Policy-as-Code"],
+      "24×7 operational security at banking scale — threat hunting, malware analysis, and EDR/XDR deployment across tens of thousands of endpoints. Detection engineering, containment runbooks, and the discipline that pulls MTTR down quarter after quarter.",
+    tags: ["EDR/XDR", "Threat Hunting", "MTTR"],
     span: "md:col-span-4 md:row-span-2",
-    icon: "ShieldCheck",
+    icon: "Siren",
     featured: true,
   },
   {
-    title: "Cloud Security",
+    title: "Zero-Trust & Presales Solutioning",
     description:
-      "Guardrailed AWS, Azure and GCP landing zones. Least-privilege IAM, CSPM, and workload isolation baked in from day one.",
-    tags: ["AWS", "Azure", "GCP"],
+      "Architecting ZTNA remote access, PAM/IAM, MFA and WAF stacks for BFSI and government — sized to the use case, not the catalog.",
+    tags: ["ZTNA", "PAM/IAM", "Presales"],
+    span: "md:col-span-2",
+    icon: "ShieldCheck",
+  },
+  {
+    title: "Cloud & Infrastructure",
+    description:
+      "RHEL, Ubuntu and Windows Server estates; AWS EC2/S3/IAM; cloud migrations and NAS storage — hardened from the landing zone up.",
+    tags: ["AWS", "Linux", "Migration"],
     span: "md:col-span-2",
     icon: "Cloud",
   },
   {
-    title: "AI & Data Security",
+    title: "Observability & Monitoring",
     description:
-      "Threat-modeling LLM applications, hardening RAG pipelines, prompt-injection defenses, and data lineage that survives an audit.",
-    tags: ["LLM Security", "DLP", "Red Teaming"],
+      "SIEM log analysis, platform health dashboards and alert triage systems that surface signal from millions of daily events.",
+    tags: ["SIEM", "Dashboards", "Triage"],
     span: "md:col-span-2",
-    icon: "BrainCircuit",
+    icon: "Activity",
   },
   {
-    title: "Threat Modeling",
+    title: "Vulnerability & Compliance",
     description:
-      "Lightweight STRIDE workshops that fit inside a sprint — risk you can act on, not a 90-page PDF nobody reads.",
-    tags: ["STRIDE", "Attack Trees"],
-    span: "md:col-span-2",
-    icon: "Bug",
-  },
-  {
-    title: "Governance & Compliance",
-    description:
-      "ISO 27001, SOC 2 and DPDP Act programs with evidence automation — compliance as a by-product of good engineering.",
-    tags: ["ISO 27001", "SOC 2", "DPDP"],
+      "Vulnerability management and reporting inside strict regulatory frameworks — ITIL change control, audits, and post-incident reviews.",
+    tags: ["ITIL", "Audits", "BFSI Compliance"],
     span: "md:col-span-2",
     icon: "Scale",
   },
   {
-    title: "Incident Response",
+    title: "Automation & AI-Assisted Ops",
     description:
-      "Playbooks, tabletop exercises and post-mortem culture — because the difference between an incident and a breach is rehearsal.",
-    tags: ["IR Playbooks", "Tabletops"],
+      "Python, Bash and JavaScript automation for health checks, patch orchestration and API integrations — with AI doing the first draft and humans signing every change.",
+    tags: ["Python", "Bash", "AI Ops"],
     span: "md:col-span-2",
-    icon: "Siren",
+    icon: "BrainCircuit",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Projects — GitHub repositories                                     */
+/* ------------------------------------------------------------------ */
+
+export interface Project {
+  name: string;
+  repo: string; // repo name on GitHub
+  description: string;
+  language: string;
+  langColor: string; // dot color
+  tags: string[];
+  url: string;
+  featured?: boolean;
+}
+
+export const projectsIntro =
+  "Defensive tooling, blue-team labs and experiments — built client-side, shipped from a terminal. Every card links straight to its repository.";
+
+export const projects: Project[] = [
+  {
+    name: "Sentinel Suite",
+    repo: "Deftools",
+    description:
+      "Four genuinely working defensive tools in one client-side web app: a password auditor with entropy, crack-time math and a live HIBP k-anonymity breach check; phishing-URL forensics across 15 weighted heuristics; a mini-SIEM log hunter that classifies brute-force and web-scanner behavior into a downloadable incident report; and a crypto bench with codecs, single-byte XOR solving, hash identification and JWT decoding with alg-confusion warnings. No server, no storage — nothing leaves the browser.",
+    language: "JavaScript",
+    langColor: "#f1e05a",
+    tags: ["HIBP", "Mini-SIEM", "URL Forensics", "Crypto Bench"],
+    url: "https://github.com/shubham-vishwakarma5606/Deftools",
+    featured: true,
+  },
+  {
+    name: "Nightgrid",
+    repo: "Nightgrid",
+    description:
+      "A cinematic, 100% fictional dark-ops console — mesh node grid, telemetry bus, and a sealed shell where every dangerous verb answers [SIM LOCKED] — paired with a RAT-Hunter blue-team lab: RAT anatomy walkthroughs mapped to defender countermeasures and copy-ready Sigma detection rules.",
+    language: "JavaScript",
+    langColor: "#f1e05a",
+    tags: ["Sigma Rules", "Blue Team", "Simulation"],
+    url: "https://github.com/shubham-vishwakarma5606/Nightgrid",
+    featured: true,
+  },
+  {
+    name: "Kavach360",
+    repo: "Kavach360",
+    description:
+      "Cybersecurity awareness, training and simulation platform — built to turn security policy into drills people actually remember.",
+    language: "HTML",
+    langColor: "#e34c26",
+    tags: ["Awareness", "Training", "Simulation"],
+    url: "https://github.com/shubham-vishwakarma5606/Kavach360",
+  },
+  {
+    name: "CyberS3an Remote Access",
+    repo: "CyberS3anRemoteAccess",
+    description:
+      "Web-based secure remote-access workflow — one-click browser access to business applications, in the spirit of TSplus-style ZTNA delivery.",
+    language: "HTML",
+    langColor: "#e34c26",
+    tags: ["Remote Access", "ZTNA"],
+    url: "https://github.com/shubham-vishwakarma5606/CyberS3anRemoteAccess",
+  },
+  {
+    name: "CyberSean Portfolio v1",
+    repo: "CyberS3an_porfolio",
+    description:
+      "The first iteration of my personal site — where the current design language started. Kept online for archaeology.",
+    language: "HTML",
+    langColor: "#e34c26",
+    tags: ["Portfolio", "v1"],
+    url: "https://github.com/shubham-vishwakarma5606/CyberS3an_porfolio",
+  },
+  {
+    name: "This Website",
+    repo: "Website",
+    description:
+      "The site you're reading — Linear-style dark design, boot animation, static Next.js export with zero runtime dependencies.",
+    language: "TypeScript",
+    langColor: "#3178c6",
+    tags: ["Next.js", "Tailwind v4", "Framer Motion"],
+    url: "https://github.com/shubham-vishwakarma5606/Website",
+  },
+];
+
+export const githubProfile = "https://github.com/shubham-vishwakarma5606";
 
 /* ------------------------------------------------------------------ */
 /*  Interests                                                          */
@@ -198,22 +286,22 @@ export const interestsIntro =
 
 export const interests: Interest[] = [
   {
-    title: "CTF & Red Team Labs",
+    title: "CTF & Blue-Team Labs",
     description:
-      "Weekend capture-the-flag and home attack labs. Breaking things on purpose is still the fastest way to learn how they fail.",
+      "Weekend capture-the-flag and detection labs. Breaking things on purpose is still the fastest way to learn how they fail.",
     icon: "Flag",
   },
   {
     title: "Homelab & Self-Hosting",
     description:
-      "A rack of NUCs running Proxmox, a segmented VLAN for everything, and absolutely no trust in my own IoT devices.",
+      "A rack of machines running segmented VLANs, a SIEM watching my own network, and absolutely no trust in my own IoT devices.",
     icon: "Server",
   },
   {
-    title: "Open Source",
+    title: "Building Security Tools",
     description:
-      "Contributor to security tooling — mostly detection rules, Terraform guardrails, and docs. Small fixes, shipped upstream.",
-    icon: "GitBranch",
+      "Shipping client-side defensive tools — Sigma rule labs, log hunters, breach-check benches. If it helps a defender, I'll build it.",
+    icon: "Wrench",
   },
   {
     title: "Writing & Speaking",
@@ -222,9 +310,9 @@ export const interests: Interest[] = [
     icon: "Mic",
   },
   {
-    title: "AI Security Research",
+    title: "AI-Assisted Operations",
     description:
-      "Probing LLM agents for failure modes — prompt injection, tool abuse, memory exfiltration. The frontier is fun because it's fragile.",
+      "Probing where LLMs genuinely help operations — log triage, detection drafts, runbook synthesis — and where they must never be trusted.",
     icon: "BrainCircuit",
   },
   {
@@ -236,48 +324,64 @@ export const interests: Interest[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Insights — numbers, principles, domains                            */
+/*  Insights — numbers, principles, credentials, domains               */
 /* ------------------------------------------------------------------ */
 
 export const stats = [
-  { value: 9, suffix: "+", label: "Years in security" },
-  { value: 60, suffix: "+", label: "Engagements delivered" },
-  { value: 35, suffix: "+", label: "Architectures reviewed" },
-  { value: 12, suffix: "+", label: "Compliance programs" },
+  { value: 5, suffix: "+", label: "Years in security & infra" },
+  { value: 80, suffix: "K+", label: "Endpoints secured" },
+  { value: 5, suffix: "K+", label: "Servers supported" },
+  { value: 99, suffix: "%", label: "Uptime sustained" },
 ];
 
 export const principles = [
   {
-    title: "Security is a product feature, not a gate.",
-    body: "Controls that block the business get bypassed. Controls that ship with the product get used.",
+    title: "Uptime is a security property.",
+    body: "An unavailable system is a compromised promise. Availability, integrity, confidentiality — in that order of user pain.",
   },
   {
-    title: "Assume breach. Design for containment.",
-    body: "Prevention fails eventually. Blast radius is the variable you actually control.",
+    title: "Reduce MTTR before chasing zero CVEs.",
+    body: "You'll never patch everything. A rehearsed response beats a perfect inventory every single time.",
   },
   {
-    title: "If it isn't measurable, it isn't managed.",
-    body: "Mean time to detect beats mean time to argue about frameworks. Instrument everything.",
+    title: "AI drafts. Humans sign.",
+    body: "Every AI-generated recommendation gets validated before it touches production. Speed with a review gate, not a leap of faith.",
   },
   {
-    title: "The best control is the one engineers love to use.",
-    body: "Paved secure paths win. Make the right thing the easy thing and compliance becomes automatic.",
+    title: "Change control is not bureaucracy.",
+    body: "It's the blast-radius limiter. The discipline you resent on a calm Tuesday is the reason Friday isn't a headline.",
   },
 ];
 
+export const certifications = [
+  { name: "CCSP", detail: "Certified Cloud Security Professional" },
+  { name: "CISM", detail: "Certified Information Security Manager" },
+  { name: "CEH", detail: "Certified Ethical Hacker" },
+  { name: "Security+", detail: "CompTIA Security Operations" },
+  { name: "Network+", detail: "CompTIA Networking Fundamentals" },
+  { name: "SRE", detail: "Site Reliability Engineering" },
+  { name: "Bitdefender Tech", detail: "Certified Technical Specialist" },
+  { name: "Bitdefender Sales", detail: "Certified Sales Specialist" },
+  { name: "TSplus Expert", detail: "Business Solution Certification" },
+];
+
 export const domains = [
-  "Zero Trust",
-  "Cloud Security",
-  "LLM Security",
-  "Kubernetes",
-  "IAM",
-  "DevSecOps",
-  "Threat Modeling",
+  "Zero Trust / ZTNA",
+  "EDR / XDR",
   "SIEM & Detection",
-  "Data Protection",
-  "Cryptography",
+  "PAM / IAM",
   "Incident Response",
-  "GRC",
+  "Threat Hunting",
+  "DLP",
+  "WAF",
+  "MDM",
+  "Cloud (AWS)",
+  "Kubernetes",
+  "Vulnerability Mgmt",
+  "ITIL & SRE",
+  "Python & Bash",
+  "AI-Assisted Ops",
+  "BFSI Compliance",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -355,6 +459,53 @@ export const posts: Post[] = [
       {
         kind: "paragraph",
         text: "None of this says \"don't ship AI.\" It says ship it like you'd ship any other privileged system: small blast radius, deep logging, rehearsed response. The teams that get LLM security right aren't the ones with the cleverest prompts — they're the ones who never trusted the prompt in the first place.",
+      },
+    ],
+  },
+  {
+    slug: "80000-endpoints-lessons-incident-response",
+    title: "What 80,000 Endpoints Taught Me About Incident Response",
+    excerpt:
+      "Three years inside banking infrastructure — where a missed Tuesday alert is a headline by Friday. Field notes on triage at scale, telemetry hygiene, and why MTTR is a culture metric.",
+    category: "Security Operations",
+    date: "Jun 21, 2026",
+    readTime: "10 min read",
+    body: [
+      {
+        kind: "paragraph",
+        text: "The first thing scale teaches you is that the mathematics of detection changes. At eighty thousand endpoints, \"alert on everything\" isn't a strategy — it's a denial-of-service attack on your own analysts. A one-in-a-million false positive rate isn't excellence; it's eighty tickets a week of nothing, teaching your queue that crying wolf is normal.",
+      },
+      { kind: "heading", text: "Triage is queue theory, not heroics" },
+      {
+        kind: "paragraph",
+        text: "The SOC mythologizes the 3 AM save. The reality is queue physics: severity has to mean potential blast radius multiplied by confidence, or your best analyst spends their shift on a misconfigured printer. We rebuilt our runbooks around three questions — can it spread, can it steal, can we contain it from here — and mean time to triage fell by more than half. The tools didn't change. The questions did.",
+      },
+      { kind: "heading", text: "Telemetry hygiene beats tool budget" },
+      {
+        kind: "paragraph",
+        text: "Every large estate lies about its coverage. The dashboard says 97% of agents healthy; nobody asks which 3% — until the investigation lands on a server that's been blind for six months, sitting quietly inside the payment VLAN. My least glamorous, most valuable ritual was the daily agent-health report: a broken sensor isn't a neutral gap, it's an invisible breach tunnel with an asset tag.",
+      },
+      {
+        kind: "list",
+        items: [
+          "Kill-switch runbooks → pre-written containment commands, peer-reviewed, executable in under five minutes.",
+          "Credential rotation drills → not documented, drilled. The first time you rotate a service account shouldn't be during a breach.",
+          "Compliance-pre-approved comms → in BFSI, the template for regulator notification exists before the incident does.",
+          "Patch windows negotiated in advance → emergency change authority agreed with the business before the CVE drops, not after.",
+        ],
+      },
+      {
+        kind: "quote",
+        text: "In a bank, you don't do incident response during an incident. You did it in the six months before — the incident just grades your homework.",
+      },
+      { kind: "heading", text: "MTTR is a culture metric" },
+      {
+        kind: "paragraph",
+        text: "You can't dashboard your way to fast recovery. What moves MTTR is boring cultural machinery: blameless post-incident reviews where people tell the truth about what they clicked; SOC and NOC sharing a vocabulary instead of an escalation form; on-call that pages a named human instead of a distribution list. The best incident teams I've worked with weren't the ones with the most tooling — they were the ones where \"I don't know, but I'll find out in five minutes\" was an acceptable sentence.",
+      },
+      {
+        kind: "paragraph",
+        text: "Scale doesn't make you paranoid. It makes you precise. You learn that security operations at banking scale is mostly inventory — of assets, of alerts, of your own unknowns — and that the humble spreadsheet of \"things we can't currently see\" is the most dangerous document you own. Guard it well.",
       },
     ],
   },

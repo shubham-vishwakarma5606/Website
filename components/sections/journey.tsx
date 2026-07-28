@@ -95,6 +95,21 @@ export function Journey() {
                     <p className="mt-1 font-mono text-xs tracking-wider text-foreground-muted sm:pl-8">
                       {entry.org}
                     </p>
+                    {entry.clients && (
+                      <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 sm:pl-8">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-subtle">
+                          clients
+                        </span>
+                        {entry.clients.map((client) => (
+                          <span
+                            key={client}
+                            className="rounded-md border border-white/[0.07] bg-white/[0.03] px-2 py-0.5 text-[11px] text-foreground-muted"
+                          >
+                            {client}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     <p className="mt-4 max-w-3xl text-sm leading-relaxed text-foreground-muted sm:pl-8 sm:text-base">
                       {entry.summary}
                     </p>

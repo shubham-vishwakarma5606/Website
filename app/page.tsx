@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { Hero } from "@/components/sections/hero";
 import { Journey } from "@/components/sections/journey";
 import { Expertise } from "@/components/sections/expertise";
+import { Projects } from "@/components/sections/projects";
 import { Interests } from "@/components/sections/interests";
 import { Insights } from "@/components/sections/insights";
 import { BlogPreview } from "@/components/sections/blog-preview";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Journey />
         <Expertise />
+        <Projects />
         <Interests />
         <Insights />
         <BlogPreview />

@@ -5,7 +5,8 @@
  * Count-up stats, numbered operating principles, and an infinite
  * domain marquee (pauses on hover, edge-masked, reduced-motion safe).
  */
-import { stats, principles, domains } from "@/lib/content";
+import { BadgeCheck } from "lucide-react";
+import { stats, principles, certifications, domains } from "@/lib/content";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
@@ -19,7 +20,7 @@ export function Insights() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="04"
+          index="05"
           label="Insights"
           title={
             <>
@@ -69,6 +70,41 @@ export function Insights() {
             </Reveal>
           ))}
         </div>
+
+        {/* Credentials */}
+        <Reveal delay={0.08} className="mt-16">
+          <SpotlightCard lift={false} className="p-6 sm:p-8">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-bright shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]">
+                <BadgeCheck className="h-5 w-5" />
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                  Credentials &amp; certifications
+                </h3>
+                <p className="font-mono text-[11px] tracking-widest text-foreground-subtle">
+                  {certifications.length} ACTIVE CERTIFICATIONS
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {certifications.map((cert) => (
+                <span
+                  key={cert.name}
+                  title={cert.detail}
+                  className="group/cert flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-sm text-foreground/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-accent/[0.08]"
+                >
+                  <span className="font-mono font-medium text-accent-bright/80 transition-colors group-hover/cert:text-accent-bright">
+                    {cert.name}
+                  </span>
+                  <span className="hidden text-xs text-foreground-muted sm:inline">
+                    {cert.detail}
+                  </span>
+                </span>
+              ))}
+            </div>
+          </SpotlightCard>
+        </Reveal>
 
         {/* Domain marquee */}
         <Reveal delay={0.1} className="mt-16">

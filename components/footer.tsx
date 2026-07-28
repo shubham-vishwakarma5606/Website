@@ -6,14 +6,15 @@
  * where and when its author is.
  */
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { site, navLinks } from "@/lib/content";
 
 const socialIcons: Record<string, React.ElementType> = {
   GitHub: Github,
   LinkedIn: Linkedin,
-  "X / Twitter": Twitter,
+  Email: Mail,
 };
 
 function IstClock() {
@@ -66,36 +67,38 @@ export function Footer() {
           {/* Nav */}
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-12 gap-y-2.5">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={hrefFor(link.href)}
                 className="text-sm text-foreground-muted transition-colors duration-200 hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
+            <Link
               href="/blog"
               className="text-sm text-foreground-muted transition-colors duration-200 hover:text-foreground"
             >
               All writing
-            </a>
+            </Link>
           </nav>
 
           {/* Socials */}
           <div className="flex gap-3">
             {site.socials.map((social) => {
               const Icon = socialIcons[social.label] ?? Github;
+              const external = !social.href.startsWith("mailto:");
               return (
                 <a
                   key={social.label}
                   href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
+                  {...(external
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
                   aria-label={social.label}
                   className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-foreground-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:text-foreground hover:shadow-[0_0_24px_rgba(94,106,210,0.25)]"
                 >
-                  <Icon className="h-4.5 w-4.5" />
+                  <Icon className="h-4 w-4" />
                 </a>
               );
             })}

@@ -8,7 +8,7 @@
 import {
   Flag,
   Server,
-  GitBranch,
+  Wrench,
   Mic,
   BrainCircuit,
   Mountain,
@@ -22,7 +22,7 @@ import { SpotlightCard } from "@/components/ui/spotlight-card";
 const icons: Record<string, LucideIcon> = {
   Flag,
   Server,
-  GitBranch,
+  Wrench,
   Mic,
   BrainCircuit,
   Mountain,
@@ -36,7 +36,7 @@ export function Interests() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="03"
+          index="04"
           label="Interests"
           title={
             <>

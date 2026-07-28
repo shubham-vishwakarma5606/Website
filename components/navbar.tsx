@@ -15,6 +15,10 @@ import { useBooted } from "@/components/site-shell";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+// Link wired through framer-motion so mobile panel items animate
+// AND get basePath applied for static hosting (e.g. GitHub Pages).
+const MotionLink = motion.create(Link);
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -79,24 +83,24 @@ export function Navbar() {
         {/* Desktop links */}
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={hrefFor(link.href)}
               className="rounded-lg px-3.5 py-2 text-sm text-foreground-muted transition-colors duration-200 hover:bg-white/[0.05] hover:text-foreground"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Desktop CTA */}
-        <a
+        <Link
           href={hrefFor("#contact")}
           className="group relative hidden items-center gap-1.5 overflow-hidden rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white shadow-[0_0_0_1px_rgba(94,106,210,0.5),0_4px_12px_rgba(94,106,210,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] transition-all duration-200 hover:bg-accent-bright hover:shadow-[0_0_0_1px_rgba(94,106,210,0.6),0_4px_20px_rgba(94,106,210,0.45),inset_0_1px_0_0_rgba(255,255,255,0.25)] active:scale-[0.98] md:inline-flex"
         >
           Let&apos;s talk
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        </Link>
 
         {/* Mobile toggle */}
         <button
@@ -133,7 +137,7 @@ export function Navbar() {
             <div className="flex h-full flex-col px-6 pb-8 pt-4">
               <div className="flex-1 space-y-1">
                 {navLinks.map((link, i) => (
-                  <motion.a
+                  <MotionLink
                     key={link.href}
                     href={hrefFor(link.href)}
                     onClick={() => setOpen(false)}
@@ -146,10 +150,10 @@ export function Navbar() {
                     <span className="font-mono text-xs text-foreground-muted">
                       0{i + 1}
                     </span>
-                  </motion.a>
+                  </MotionLink>
                 ))}
               </div>
-              <motion.a
+              <MotionLink
                 href={hrefFor("#contact")}
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 12 }}
@@ -159,7 +163,7 @@ export function Navbar() {
               >
                 Let&apos;s talk
                 <ArrowUpRight className="h-4 w-4" />
-              </motion.a>
+              </MotionLink>
             </div>
           </motion.div>
         )}

@@ -21,7 +21,7 @@ export function BlogPreview() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="05"
+          index="06"
           label="Writing"
           title={
             <>

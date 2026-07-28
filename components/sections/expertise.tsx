@@ -6,12 +6,12 @@
  * snippet instead of stock iconography: the artifact is the proof.
  */
 import {
+  Siren,
   ShieldCheck,
   Cloud,
-  BrainCircuit,
-  Bug,
+  Activity,
   Scale,
-  Siren,
+  BrainCircuit,
   type LucideIcon,
 } from "lucide-react";
 import { expertise, expertiseIntro } from "@/lib/content";
@@ -20,46 +20,54 @@ import { Reveal } from "@/components/ui/reveal";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 
 const icons: Record<string, LucideIcon> = {
+  Siren,
   ShieldCheck,
   Cloud,
-  BrainCircuit,
-  Bug,
+  Activity,
   Scale,
-  Siren,
+  BrainCircuit,
 };
 
-/** Policy snippet rendered in the featured card — hand-tinted tokens. */
-function PolicySnippet() {
+/** Detection snippet in the featured card — Sentinel-style KQL, hand-tinted. */
+function DetectionSnippet() {
   return (
     <div className="mt-6 overflow-hidden rounded-xl border border-white/[0.07] bg-[#0a0a0d]/90">
       <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-2.5">
         <span className="font-mono text-[11px] tracking-wider text-foreground-subtle">
-          zero-trust / identity.rego
+          detections / brute-force-burst.kql
         </span>
         <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-widest text-emerald-400/80">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          ENFORCED
+          DEPLOYED · <span className="tabular-nums">80K</span> EP
         </span>
       </div>
       <div className="space-y-1 overflow-x-auto px-4 py-4 font-mono text-xs leading-relaxed sm:text-[13px]">
-        <div className="text-foreground-subtle"># every request, every time</div>
+        <div className="text-foreground-subtle">// burst failures, many hosts, one source</div>
         <div>
-          <span className="text-indigo-300">allow</span>{" "}
-          <span className="text-foreground/80">when {"{"}</span>
+          <span className="text-indigo-300">AuthEvents</span>
         </div>
-        <div className="pl-5 text-foreground/80">
-          device.posture == <span className="text-emerald-300/90">"compliant"</span>
+        <div className="text-foreground/80">
+          | <span className="text-indigo-300">where</span> ResultType !in{" "}
+          (<span className="text-emerald-300/90">"0"</span>,{" "}
+          <span className="text-emerald-300/90">"50126"</span>)
         </div>
-        <div className="pl-5 text-foreground/80">
-          user.mfa == <span className="text-emerald-300/90">"phishing-resistant"</span>
+        <div className="text-foreground/80">
+          | <span className="text-indigo-300">summarize</span> fails = count(),
+          hosts = dcount(Computer)
         </div>
-        <div className="pl-5 text-foreground/80">
-          session.ttl &lt;= <span className="text-accent-bright">3600</span>
+        <div className="pl-[4.7rem] text-foreground/80">
+          <span className="text-indigo-300">by</span> CallerIP, bin(TimeGenerated,{" "}
+          <span className="text-accent-bright">5m</span>)
         </div>
-        <div className="pl-5 text-foreground/80">
-          context.risk_score &lt; <span className="text-accent-bright">0.30</span>
+        <div className="text-foreground/80">
+          | <span className="text-indigo-300">where</span> fails &gt;={" "}
+          <span className="text-accent-bright">20</span> and hosts &gt;={" "}
+          <span className="text-accent-bright">3</span>
         </div>
-        <div className="text-foreground/80">{"}"}</div>
+        <div className="text-foreground/80">
+          | <span className="text-indigo-300">extend</span> action ={" "}
+          <span className="text-emerald-300/90">"contain + rotate"</span>
+        </div>
       </div>
     </div>
   );
@@ -117,7 +125,7 @@ export function Expertise() {
                     >
                       {card.description}
                     </p>
-                    {card.featured && <PolicySnippet />}
+                    {card.featured && <DetectionSnippet />}
                     <div className="mt-auto flex flex-wrap gap-2 pt-5">
                       {card.tags.map((tag) => (
                         <span
