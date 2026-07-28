@@ -1,18 +1,17 @@
 "use client";
 
 /**
- * Hero — cinematic opening, now with a resident samurai.
+ * Hero — cinematic opening, with the realistic samurai standing in it.
  *
- * Layout: left dojo pane (persistent 3D samurai with mood loops) +
- * right copy column on desktop; stacked on mobile. Entrance is gated
- * on the full reveal chain (boot → samurai cinematic → content), and
- * the scroll-linked parallax exit is unchanged.
+ * Layout: the samurai occupies the left of the hero (behind the copy on
+ * mobile, beside it on desktop) — no framed "dojo" pane, no 3D canvas.
+ * He now lives here on the landing page instead of in the boot/intro
+ * sequence, so he is the first thing a visitor sees on the page itself.
  *
- * The panel is dynamically imported (ssr:false) so three.js loads
- * after hydration, behind a skeleton card.
+ * Entrance is gated on the boot reveal; the scroll-linked parallax exit
+ * is unchanged.
  */
 import { useRef } from "react";
-import dynamic from "next/dynamic";
 import {
   motion,
   useScroll,
@@ -24,17 +23,7 @@ import { ArrowDown, ArrowRight, ChevronRight } from "lucide-react";
 import { hero } from "@/lib/content";
 import { useReady } from "@/components/site-shell";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
-
-const SamuraiPanel = dynamic(() => import("@/components/samurai/samurai-panel"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-[420px] items-center justify-center rounded-2xl border border-dashed border-white/[0.08] bg-white/[0.02]">
-      <span className="animate-pulse font-mono text-[10px] tracking-[0.3em] text-foreground-subtle">
-        LOADING DOJO…
-      </span>
-    </div>
-  ),
-});
+import { SamuraiHeroFigure } from "@/components/samurai/samurai-hero-figure";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -75,10 +64,10 @@ export function Hero() {
           animate={ready ? "show" : "hidden"}
         >
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,430px)_minmax(0,1fr)] lg:gap-14">
-            {/* Left pane — resident samurai */}
-            <motion.div variants={item} className="mx-auto w-full max-w-md lg:max-w-none">
-              <SamuraiPanel />
-            </motion.div>
+            {/* The samurai — standing on the landing page itself */}
+            <div className="relative -mb-6 lg:mb-0">
+              <SamuraiHeroFigure show={ready} />
+            </div>
 
             {/* Copy */}
             <div className="text-center lg:text-left">
