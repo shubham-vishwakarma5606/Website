@@ -12,6 +12,9 @@
 .DS_Store
 *.pem
 
+# samurai plate source frames (regenerable via scripts/normalize-samurai.py)
+/scripts/samurai-src/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
